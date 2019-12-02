@@ -99,6 +99,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 // オブザーバーを削除する
                 let postsRef = Database.database().reference().child(Const.PostPath)
                 postsRef.removeAllObservers()
+                let postCommentsRef = Database.database().reference().child(Const.CommentPostPath)
+                postCommentsRef.removeAllObservers()
 
                 // DatabaseのobserveEventが上記コードにより解除されたため
                 // falseとする
@@ -114,15 +116,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを取得してデータを設定
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
-        cell.setPostData(postArray[indexPath.row])
+
+        let postData = postArray[indexPath.row]
+        cell.setPostData(postData)
 
         // セル内のボタンのアクションをソースコードで設定する
-        cell.likeButton.addTarget(self, action: #selector(handleButton(_:forEvent:)), for: .touchUpInside)
+        cell.likeButton.addTarget(self, action: #selector(handleLikeButton(_:forEvent:)), for: .touchUpInside)
+        cell.commentButton.addTarget(self, action: #selector(handleCommentButton(_:forEvent:)), for: .touchUpInside)
 
         return cell
     }
 
-    @objc func handleButton(_ sender: UIButton, forEvent event: UIEvent) {
+    @objc func handleLikeButton(_ sender: UIButton, forEvent event: UIEvent) {
         print("DEBUG_PRINT: likeボタンがタップされました。")
 
         // タップされたセルのインデックスを求める
@@ -157,5 +162,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
+    @objc func handleCommentButton(_ sender: UIButton, forEvent event: UIEvent) {
+        let postCommentViewController = storyboard?.instantiateViewController(withIdentifier: "PostComment") as! PostCommentViewController
+
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        // 配列からタップされたインデックスのデータを取り出す
+        let postData = postArray[indexPath!.row]
+
+        postCommentViewController.postId = postData.id!
+
+        present(postCommentViewController, animated: true, completion: nil)
+    }
 
 }

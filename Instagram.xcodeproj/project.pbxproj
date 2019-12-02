@@ -23,6 +23,9 @@
 		3EC88BB7238CB6E000B55746 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC88BB6238CB6E000B55746 /* PostData.swift */; };
 		3EC88BBA238CB8F800B55746 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC88BB8238CB8F800B55746 /* PostTableViewCell.swift */; };
 		3EC88BBB238CB8F800B55746 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC88BB9238CB8F800B55746 /* PostTableViewCell.xib */; };
+		3EC88BCE238F506F00B55746 /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC88BCD238F506F00B55746 /* PostCommentViewController.swift */; };
+		3EC88BD32394B95400B55746 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC88BD12394B95400B55746 /* CommentTableViewCell.swift */; };
+		3EC88BD42394B95400B55746 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC88BD22394B95400B55746 /* CommentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		3EC88BB6238CB6E000B55746 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		3EC88BB8238CB8F800B55746 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		3EC88BB9238CB8F800B55746 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		3EC88BCD238F506F00B55746 /* PostCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentViewController.swift; sourceTree = "<group>"; };
+		3EC88BD12394B95400B55746 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		3EC88BD22394B95400B55746 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		5076A66E22FEF5BCDFD894AA /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		64D4D6A5C9894C220CB98EDE /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +111,9 @@
 				3EC88BB6238CB6E000B55746 /* PostData.swift */,
 				3EC88BB8238CB8F800B55746 /* PostTableViewCell.swift */,
 				3EC88BB9238CB8F800B55746 /* PostTableViewCell.xib */,
+				3EC88BD12394B95400B55746 /* CommentTableViewCell.swift */,
+				3EC88BD22394B95400B55746 /* CommentTableViewCell.xib */,
+				3EC88BCD238F506F00B55746 /* PostCommentViewController.swift */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -182,6 +191,7 @@
 				3EC88BBB238CB8F800B55746 /* PostTableViewCell.xib in Resources */,
 				3EC88BB323837A0F00B55746 /* GoogleService-Info.plist in Resources */,
 				3EC88B9E23822B9F00B55746 /* Assets.xcassets in Resources */,
+				3EC88BD42394B95400B55746 /* CommentTableViewCell.xib in Resources */,
 				3EC88B9C23822B9D00B55746 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,9 +250,11 @@
 				3EC88BA923822CC700B55746 /* LoginViewController.swift in Sources */,
 				3EC88B9923822B9D00B55746 /* ViewController.swift in Sources */,
 				3EC88B9723822B9D00B55746 /* AppDelegate.swift in Sources */,
+				3EC88BCE238F506F00B55746 /* PostCommentViewController.swift in Sources */,
 				3EC88BAD23822E0900B55746 /* ImageSelectViewController.swift in Sources */,
 				3EC88BB5238CB3D300B55746 /* Const.swift in Sources */,
 				3EC88BBA238CB8F800B55746 /* PostTableViewCell.swift in Sources */,
+				3EC88BD32394B95400B55746 /* CommentTableViewCell.swift in Sources */,
 				3EC88BB123822E1E00B55746 /* SettingViewController.swift in Sources */,
 				3EC88BAB23822DFB00B55746 /* HomeViewController.swift in Sources */,
 			);

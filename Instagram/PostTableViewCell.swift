@@ -7,24 +7,51 @@
 //
 
 import UIKit
+import Firebase
 
-class PostTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var commentTableView: UITableView!
 
+    var comments: [Dictionary<String, String>] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        commentTableView.delegate = self
+        commentTableView.dataSource = self
+        // テーブルセルのタップを無効にする
+        commentTableView.allowsSelection = false
+
+        let nib = UINib(nibName: "CommentTableViewCell", bundle: nil)
+        commentTableView.register(nib, forCellReuseIdentifier: "CommetCell")
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        // セルを取得してデータを設定
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommetCell", for: indexPath) as! CommentTableViewCell
+        let commentData = comments[indexPath.row].first
+        cell.commentLabel.text = commentData?.value
+        cell.nameLabel.text = commentData?.key
+
+        return cell
     }
 
     func setPostData(_ postData: PostData) {
@@ -46,6 +73,9 @@ class PostTableViewCell: UITableViewCell {
             let buttonImage = UIImage(named: "like_none")
             self.likeButton.setImage(buttonImage, for: .normal)
         }
+
+        self.comments = postData.comments
+        commentTableView.reloadData()
     }
-    
+
 }
