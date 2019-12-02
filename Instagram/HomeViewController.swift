@@ -99,12 +99,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 // オブザーバーを削除する
                 let postsRef = Database.database().reference().child(Const.PostPath)
                 postsRef.removeAllObservers()
-                let postCommentsRef = Database.database().reference().child(Const.CommentPostPath)
-                postCommentsRef.removeAllObservers()
 
                 // DatabaseのobserveEventが上記コードにより解除されたため
                 // falseとする
                 observing = false
+                
             }
         }
     }
