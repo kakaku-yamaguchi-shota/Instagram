@@ -8,14 +8,18 @@
 
 import UIKit
 import Firebase
+import RxSwift
+import RxCocoa
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchText: UITextField!
 
     var postArray: [PostData] = []
     // DatabaseのobserveEventの登録状態を表す
     var observing = false
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +39,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // テーブル行の高さの概算値を設定
         // 高さの概算 「縦横比1:1のUIImageViewの高さ(=画面幅)」+ 「いいねボタン、キャプションラベル、その他余白の高さの合計概算(100pt)」
         tableView.estimatedRowHeight = UIScreen.main.bounds.width + 100
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +88,46 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         self.tableView.reloadData()
                     }
                 })
+
+                // RxSwift対応: 検索処理を作ってみる
+                searchText.rx.text
+                    .orEmpty
+                    .asObservable()
+                    .skip(1)
+                    .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+                    .distinctUntilChanged()
+                    .subscribe { [weak self] in
+                        if let keyword = $0.element, let uid = Auth.auth().currentUser?.uid {
+                            let postsRef = Database.database().reference().child(Const.PostPath)
+                            postsRef.observe(.value, with: { snapshot in
+                                var dataSnapshots: [DataSnapshot] = []
+
+                                switch keyword {
+                                case "":
+                                    dataSnapshots = snapshot.children.reversed().compactMap { child in
+                                        child as? DataSnapshot
+                                    }
+                                default:
+                                    dataSnapshots = snapshot.children.reversed().compactMap { child in
+                                        if let childDS = child as? DataSnapshot,
+                                            let value = childDS.value as? NSDictionary,
+                                            let caption = value["caption"] as? String,
+                                            caption.contains(keyword) {
+
+                                            return childDS
+                                        }
+                                        return nil
+                                    }
+                                }
+
+                                let postData = dataSnapshots.map { PostData(snapshot: $0, myId: uid) }
+                                self?.postArray = postData
+                                // TableViewを再表示
+                                self?.tableView.reloadData()
+                            })
+                        }
+                    }
+                    .disposed(by: disposeBag)
 
                 // DatabaseのobserveEventが上記コードにより登録されたため
                 // trueとする

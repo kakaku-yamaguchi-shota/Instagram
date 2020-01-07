@@ -89,6 +89,12 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -98,6 +104,8 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - RxCocoa
+  - RxSwift
   - SVProgressHUD (= 2.2.5)
 
 SPEC REPOS:
@@ -116,6 +124,9 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -133,8 +144,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 4828d9dcde107637622190fd1faef3e910f3133b
+PODFILE CHECKSUM: f34f818210e4fab65e9fbc7c40d8f53070661e94
 
 COCOAPODS: 1.8.4

@@ -350,26 +350,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JQG-x6-jy9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="778"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="キャプションを検索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VEN-za-KXW">
+                                <rect key="frame" x="10" y="49" width="394" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="JQG-x6-jy9" firstAttribute="top" secondItem="VEN-za-KXW" secondAttribute="bottom" constant="5" id="CwC-KN-p2D"/>
                             <constraint firstItem="JQG-x6-jy9" firstAttribute="leading" secondItem="AKx-Lh-IOx" secondAttribute="leading" id="Gka-50-0Ic"/>
                             <constraint firstItem="AKx-Lh-IOx" firstAttribute="trailing" secondItem="JQG-x6-jy9" secondAttribute="trailing" id="KbE-hs-5Rn"/>
+                            <constraint firstItem="VEN-za-KXW" firstAttribute="top" secondItem="AKx-Lh-IOx" secondAttribute="top" constant="5" id="Y8w-5u-NeY"/>
+                            <constraint firstItem="AKx-Lh-IOx" firstAttribute="trailing" secondItem="VEN-za-KXW" secondAttribute="trailing" constant="10" id="e7O-Sv-zgG"/>
                             <constraint firstItem="AKx-Lh-IOx" firstAttribute="bottom" secondItem="JQG-x6-jy9" secondAttribute="bottom" id="hkJ-TF-rtg"/>
-                            <constraint firstItem="JQG-x6-jy9" firstAttribute="top" secondItem="AKx-Lh-IOx" secondAttribute="top" id="t21-GH-9FI"/>
+                            <constraint firstItem="VEN-za-KXW" firstAttribute="leading" secondItem="AKx-Lh-IOx" secondAttribute="leading" constant="10" id="npN-3h-vA7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AKx-Lh-IOx"/>
                     </view>
                     <connections>
+                        <outlet property="searchText" destination="VEN-za-KXW" id="ubi-JT-yWX"/>
                         <outlet property="tableView" destination="JQG-x6-jy9" id="4RH-wl-DNW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0vU-rX-QLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="667" y="779"/>
+            <point key="canvasLocation" x="666.66666666666674" y="778.79464285714278"/>
         </scene>
     </scenes>
     <resources>
